@@ -1,7 +1,7 @@
 {
     "name": "fweegpt",
     "description": "Uses the ChatGPT translate endpoint to give you free (unlimted?) access to ChatGPT.",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "keywords": [
         "openai",
         "chatgpt",
@@ -18,7 +18,7 @@
     "types": "dist/main.d.ts",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/VillainsRule/fweeGPT"
+        "url": "git+https://github.com/VillainsRule/fweeGPT.git"
     },
     "type": "module",
     "scripts": {

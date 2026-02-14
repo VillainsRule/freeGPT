@@ -19,4 +19,20 @@ console.log(response);
 
 The modal is gpt-4.0 only; this is a locked feature of the translate endpoint. It's also fairly slow since each translation takes 3 requests to succeed.
 
+You can also pass a full conversation history to continue a conversation:
+
+```js
+import askGPT from '../dist/main';
+
+const response = await askGPT({
+    prompt: 'Add 2 to the previous result. Output only the response.',
+    history: [
+        { role: 'user', content: 'What is 2 + 2?' },
+        { role: 'assistant', content: '2 + 2 is 4.' }
+    ]
+});
+
+console.log('4 + 2 = ' + response);
+```
+
 Takedowns: hi@villainsrule.xyz (OAI just email me it ain't that hard)

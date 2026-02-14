@@ -150,7 +150,12 @@ const body = JSON.stringify({
     proofofwork: powAnswer
 });
 
-const askGPT = async (params: { prompt: string, messages?: Message[] }) => {
+interface HistoryItem {
+    role: 'user' | 'assistant' | 'system';
+    content: string;
+}
+
+const askGPT = async (params: { prompt: string, history?: HistoryItem,  messages?: Message[] }) => {
     if (!params.prompt) throw new Error('no prompt specified to askGPT()');
 
     const req2 = await fetch('https://chatgpt.com/backend-anon/sentinel/chat-requirements/finalize', {
@@ -172,6 +177,16 @@ const askGPT = async (params: { prompt: string, messages?: Message[] }) => {
     });
 
     const res2 = await req2.json() as any;
+
+    const formulatedHistory = Array.isArray(params.history) ? params.history.map(h => ({
+        id: crypto.randomUUID(),
+        author: { role: h.role },
+        create_time: Math.floor(Date.now() / 1000),
+        content: {
+            content_type: 'text',
+            parts: [h.content]
+        }
+    })) : [];
 
     const req3 = await fetch('https://chatgpt.com/backend-anon/conversation', {
         method: 'POST',
@@ -197,6 +212,7 @@ const askGPT = async (params: { prompt: string, messages?: Message[] }) => {
             'history_and_training_disabled': true,
             'is_visible': true,
             'messages': params.messages ?? [
+                ...formulatedHistory,
                 {
                     'id': crypto.randomUUID(),
                     'author': { 'role': 'user' },
