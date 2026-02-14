@@ -17,6 +17,9 @@ jobs:
         with:
           bun-version: latest
 
+      - name: install dependencies
+        run: bun install
+
       - name: build fweeGPT
         run: bun run build
 
