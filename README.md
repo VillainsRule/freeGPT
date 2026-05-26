@@ -1,3 +1,8 @@
+> [!NOTE]
+> patched by OAI on last check - OAI now requires you to send the language information and doesn't allow direct conversing. this will now only work if you can jailbreak the bot through the text parameter :<
+
+<br><br><hr><br><br>
+
 ## FreeGPT
 (Ab)uses the [Translate](https://chatgpt.com/translate) endpoint of ChatGPT to give everyone free access to ChatGPT.
 
